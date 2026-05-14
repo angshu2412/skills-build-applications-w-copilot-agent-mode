@@ -22,10 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-=h!e56dxr@7njjk-#$#@fycuvv$ufd1g!d+^fp-v=r=c!!so=z'
 
+import os
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [os.getenv('CODESPACE_NAME'), 'localhost', '127.0.0.1'] if os.getenv('CODESPACE_NAME') else ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -38,9 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'octofit_tracker',
+    'tracker',
     'rest_framework',
-    'django',
     'corsheaders',
 ]
 
